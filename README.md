@@ -41,3 +41,17 @@ Speichert Sicherungen und Backups.
 - Bash
 - Git
 - GitHub
+
+## 📜 Verfügbare Skripte
+
+### systeminfo.sh
+Zeigt Informationen über das System an.
+
+### diskspace.sh
+Prüft den freien Speicherplatz.
+
+### backup.sh
+Erstellt ein Backup eines Ordners.
+
+### usercheck.sh
+Prüft, ob ein Benutzer existiert.
