@@ -36,3 +36,5 @@ echo ""
 echo "=================================="
 echo "Fertig."
 echo "=================================="
+
+echo "$(date): Systeminformationen ausgeführt" >> logs/activity.log
