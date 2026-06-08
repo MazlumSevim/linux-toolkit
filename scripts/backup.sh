@@ -15,24 +15,33 @@ then
     exit 1
 fi
 
-# Backup-Ordner festlegen
-ziel="backup"
+# Backup-Hauptordner
+backupordner="backup"
 
-# Prüfen, ob Backup-Ordner existiert
-if [ -d "$ziel" ]
+# Backup-Ordner erstellen, falls nicht vorhanden
+if [ ! -d "$backupordner" ]
 then
-    echo "📁 Backup-Ordner existiert bereits."
-else
-    mkdir "$ziel"
+    mkdir "$backupordner"
     echo "📁 Backup-Ordner wurde erstellt."
+else
+    echo "📁 Backup-Ordner existiert bereits."
 fi
+
+# Datum und Uhrzeit für eindeutigen Backup-Ordner
+datum=$(date +"%Y-%m-%d_%H-%M-%S")
+
+# Neuer Backup-Ordner
+ziel="$backupordner/backup_$datum"
+
+mkdir "$ziel"
 
 echo ""
 echo "📦 Starte Backup..."
 
 # Ordner sichern
-rsync -av "$quelle/" "$ziel/"
+rsync -av "$quelle" "$ziel/"
 
+# Erfolg prüfen
 if [ $? -eq 0 ]
 then
     echo ""
@@ -47,8 +56,8 @@ then
     realpath "$ziel"
 
     echo ""
-    echo "📋 Inhalt des Backup-Ordners:"
-    ls -lh "$ziel"
+    echo "📋 Gesicherte Dateien:"
+    ls -lah "$ziel"
 else
     echo ""
     echo "❌ Fehler beim Erstellen des Backups."
